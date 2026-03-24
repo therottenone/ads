@@ -1,0 +1,151 @@
+//1.
+
+def print_digits(n):
+    n = abs(n)
+    if n < 10:
+        print(n)
+        return
+    print_digits(n // 10)
+    print(n % 10)
+
+
+//2.
+
+def sum_recursive(arr, index=0):
+    if index == len(arr):
+        return 0
+    return arr[index] + sum_recursive(arr, index + 1)
+
+
+def average_recursive(arr):
+    if len(arr) == 0:
+        return 0
+    total = sum_recursive(arr)
+    return total / len(arr)
+
+
+//3.
+
+def is_prime_recursive(n, divisor=2):
+    if n < 2:
+        return False
+    if divisor * divisor > n:
+        return True
+    if n % divisor == 0:
+        return False
+    return is_prime_recursive(n, divisor + 1)
+
+
+//4.
+
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+
+//5.
+
+def fibonacci(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+
+//6.
+
+def power(a, n):
+    if n == 0:
+        return 1
+    return a * power(a, n - 1)
+
+
+//7.
+
+def reverse_print_numbers(n):
+    if n == 0:
+        return
+    x = int(input())
+    reverse_print_numbers(n - 1)
+    print(x, end=' ')
+
+
+//8.
+
+def only_digits(s, index=0):
+    if index == len(s):
+        return True
+    if not s[index].isdigit():
+        return False
+    return only_digits(s, index + 1)
+
+
+//9.
+
+def count_chars(s):
+    if s == "":
+        return 0
+    return 1 + count_chars(s[1:])
+
+//10.
+
+def gcd(a, b):
+    if b == 0:
+        return a
+    return gcd(b, a % b)
+
+print("Choose task number (1-10):")
+task = int(input())
+
+if task == 1:
+    n = int(input("Enter number: "))
+    print_digits(n)
+
+elif task == 2:
+    n = int(input("Enter number of elements: "))
+    arr = list(map(int, input("Enter elements: ").split()))
+    print(average_recursive(arr))
+
+elif task == 3:
+    n = int(input("Enter number: "))
+    if is_prime_recursive(n):
+        print("Prime")
+    else:
+        print("Composite")
+
+elif task == 4:
+    n = int(input("Enter n: "))
+    print(factorial(n))
+
+elif task == 5:
+    n = int(input("Enter n: "))
+    print(fibonacci(n))
+
+elif task == 6:
+    a, n = map(int, input("Enter a and n: ").split())
+    print(power(a, n))
+
+elif task == 7:
+    n = int(input("Enter count of numbers: "))
+    reverse_print_numbers(n)
+    print()
+
+elif task == 8:
+    s = input("Enter string: ")
+    if only_digits(s):
+        print("Yes")
+    else:
+        print("No")
+
+elif task == 9:
+    s = input("Enter string: ")
+    print(count_chars(s))
+
+elif task == 10:
+    a, b = map(int, input("Enter two numbers: ").split())
+    print(gcd(a, b))
+
+else:
+    print("Invalid task number")
